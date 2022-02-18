@@ -1,3 +1,35 @@
+<SwipeToDeleteItem>:
+    size_hint_y: None
+    height: content.height
+
+    MDCardSwipeLayerBox:
+        padding: "8dp"
+
+        MDIconButton:
+            icon: "trash-can"
+            pos_hint: {"center_y": .5}
+            on_release: root.
+    MDCardSwipeFrontBox:
+
+        OneLineListItem:
+            id: content
+            text: root.text
+            _no_ripple_effect: True
+<TimeScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1
+        ScrollView:
+            MDList:
+                id:list_time
+
+        MDFloatingActionButton:
+            pos_hint:{"center_x":.5}
+            icon: "plus"
+            md_bg_color: app.theme_cls.primary_color
+            on_release:root.add_alarm()
+        
+
 <MainScreen>
     MDBottomNavigation:
 
@@ -6,9 +38,9 @@
             name: "home"
             text: "Home"
             icon: "alarm-check"
-            Button:
-                text: "text"
-        
+            TimeScreen:
+                size_hint:1,1
+
         MDBottomNavigationItem:
             name: "setting"
             text: "Настройки"
