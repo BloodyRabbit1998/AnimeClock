@@ -1,4 +1,4 @@
-<SwipeToDeleteItem>:
+<SwipeToDeleteItem>
     size_hint_y: None
     height: content.height
 
@@ -8,7 +8,7 @@
         MDIconButton:
             icon: "trash-can"
             pos_hint: {"center_y": .5}
-            on_release: root.
+            on_release: 
     MDCardSwipeFrontBox:
 
         OneLineListItem:
@@ -24,27 +24,37 @@
                 id:list_time
 
         MDFloatingActionButton:
-            pos_hint:{"center_x":.5}
+            pos_hint:{"center_x":.9,"center_y":.5}
             icon: "plus"
             md_bg_color: app.theme_cls.primary_color
             on_release:root.add_alarm()
         
 
 <MainScreen>
-    MDBottomNavigation:
+    ScreenManager:
+        id:SM_main
+        TimeScreen:
+            name:"time"
+        Screen:
+            name:"setting"
+    BoxLayout:
+        orientation:'vertical'
+        size_hint_y:None
+        height:dp(10)
+    AKFloatingRoundedAppbar:
+        AKFloatingRoundedAppbarButtonItem:
+            icon: "alarm-plus"
+            text: "Будильник"
+            on_release: SM_main.current="time"
 
-        # Add a NavigationItem for each Navigation.
-        MDBottomNavigationItem:
-            name: "home"
-            text: "Home"
-            icon: "alarm-check"
-            TimeScreen:
-                size_hint:1,1
+        AKFloatingRoundedAppbarButtonItem:
+            icon: "cog"
+            text: "Add"
+            on_release: SM_main.current="setting"
+        AKFloatingRoundedAppbarAvatarItem:
+            source: "assets/google.jpg"
+            text: "Google"
 
-        MDBottomNavigationItem:
-            name: "setting"
-            text: "Настройки"
-            icon: "cog-outline"
 
             # Add Contents here
 
